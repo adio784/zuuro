@@ -1,0 +1,289 @@
+*/
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900");
+/* 
+---------------------------------------------
+reset
+--------------------------------------------- 
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
+pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
+s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+figure, header, nav, section, article, aside, footer, figcaption {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+html[xmlns] .clearfix {
+  display: block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+body{
+  background-image: url(../images/login-bg.png);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+::selection {
+  background: #F068A6 ;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: #F068A6 ;
+  color: #fff;
+}
+
+section {
+  margin-top: 40px;
+}
+
+@media (max-width: 991px) {
+  html, body {
+    overflow-x: hidden;
+  }
+  .mobile-top-fix {
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+  .mobile-bottom-fix {
+    margin-bottom: 30px;
+  }
+  .mobile-bottom-fix-big {
+    margin-bottom: 60px;
+  }
+}
+
+
+/* 
+---------------------------------------------
+Login Form
+-------------------------------------------- 
+*/
+
+section.login-section {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0px;
+  position: relative;
+}
+
+section.login-section:after {
+  position: absolute;
+  content: '';
+  left: 0px;
+  top: 60px;
+  width: 267px;
+  height: 396px;
+  z-index: 1;
+}
+
+section.login-section .img-section img {
+  width: 15%;
+  height: 15%;
+  text-transform: uppercase;
+  justify-content: center;
+}
+
+section.login-section .img-section {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+section.login-section .contact-info h4 {
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+section.login-section .section-heading {
+  text-align: left;
+  margin-bottom: 40px;
+}
+.section-heading h4 {
+  margin-top: 10px;
+  line-height: 40px;
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: capitalize;
+  color: #111;
+}
+
+.section-heading h4 em {
+  font-style: normal;
+  color: #F068A6  ;
+}
+
+.section-heading p {
+  margin-top: 30px;
+}
+
+section.login-section #login {
+  margin-left: -100px;
+  position: relative;
+  z-index: 5;
+  background-color: #fff;
+  margin-top: 40px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  padding: 40px;
+}
+
+section.login-section a {
+  width: 44px;
+  height: 44px;
+  text-align: right;
+  justify-content: right;
+  align-content: right;
+  line-height: 44px;
+  background-color: #fff;
+  color: #F068A6  ;
+  transition: all .5s;
+  text-decoration: none;
+}
+
+section.login-section #login input {
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #f4f7fb;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #7a7a7a;
+  padding: 0px 15px;
+  margin-bottom: 30px;
+}
+
+section.login-section #login select {
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #f4f7fb;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #7a7a7a;
+  padding: 0px 15px;
+  margin-bottom: 30px;
+}
+section.login-section #login input[type=checkbox]{
+  width: 10%;
+  height: 15px;
+  border-radius: 5px;
+  background-color: #f4f7fb;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #7a7a7a;
+  padding: 0px 15px;
+  margin-bottom: 30px;
+}
+
+section.login-section #login textarea {
+  width: 100%;
+  min-height: 140px;
+  max-height: 180px;
+  border-radius: 5px;
+  background-color: #f4f7fb;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #7a7a7a;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+section.login-section #login button {
+  float: right;
+  font-size: 13px;
+  color: #fff;
+  background: rgb(219,138,222);
+  background: linear-gradient(-145deg, rgba(95, 62, 141, 1) 0%, rgba(240, 104, 166, 1) 100%);
+  padding: 12px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all .3s;
+  transition: all .3s;
+  border: none;
+  outline: none;
+}
+
+section.login-section #login button:hover {
+  opacity: 0.9;
+}
+
+/* 
+---------------------------------------------
+responsive
+--------------------------------------------- 
+*/
+body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 992px) {
+
+  section.login-section .contact-info {
+    margin-top: 15px;
+  }
+  section.login-section #login {
+    margin-left: 0px;
+  }
+  section.login-section #login button {
+    float: none;
+  }
+  section.get-info .left-image {
+    margin-right: 0px;
+    margin-bottom: 30px;
+  }
+  section.get-info .info-item {
+    margin-top: 60px;
+  }
+  section.our-office #video {
+    margin-left: 0px;
+    margin-top: 30px;
+  }
+  section.featured-product .left-info .info-item,
+  section.featured-product .right-info .info-item {
+    text-align: center;
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+  section.featured-product .left-info .info-item .icon {
+    right: 50%;
+    transform: translateX(40px);
+  }
+  section.featured-product .right-info .info-item .icon {
+    left: 50%;
+    transform: translateX(-40px);
+  }
+  section.featured-product .product-image {
+    margin: 60px
+  }
+  section.our-team ul.nacc li .left-content span a,
+  section.our-courses ul.nacc li .right-content span {
+    margin-right: 15px;
+    padding-right: 15px;
+  }
+}

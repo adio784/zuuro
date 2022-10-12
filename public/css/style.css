@@ -1,0 +1,127 @@
+.container {
+    background: #7F00FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E100FF, #7F00FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E100FF, #7F00FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 100%;
+    min-height: 520px; 
+    text-align: center;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+#clock {
+  position: relative;
+  grid-area: content;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: double 10px #39454b;
+  background: linear-gradient(-45deg, #39454b 20%, #101017);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  margin: 10px auto;
+}
+
+.dial {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: dotted 1px #101017;
+  background: #4c5c64;
+  z-index: 1;
+}
+
+/* Clock hands */
+.hand {
+  position: absolute;
+  transform-origin: 0px center;
+  /* Fix aliasing caused by transform: rotate() */
+  outline: 1px solid transparent;
+}
+
+#hour-hand {
+  /* center hand */
+  top: calc(50% - 2px);
+  left: 50%;
+  width: 80px;
+  height: 2px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  background: #b7ddf0;
+  z-index: 2;
+}
+
+#minute-hand {
+  /* center hand */
+  top: calc(50% - 2px);
+  left: 50%;
+  width: 120px;
+  height: 2px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  background: #b7ddf0;
+  z-index: 3;
+}
+
+#second-hand {
+  /* center hand */
+  top: calc(50% - 1px);
+  left: 80px;
+  width: 200px;
+  height: 2px;
+  border-radius: 1px;
+  background: #b7ddf0;
+  transform-origin: 70px center;
+  z-index: 5;
+}
+
+#second-hand .ring {
+  width: 12px;
+  height: 10px;
+  margin-top: -5px;
+  margin-left: 15px;
+  background: transparent;
+  border: 1px solid #b7ddf0;
+  border-radius: 50%;
+  z-index: 11;
+}
+
+/* Long form text displays */
+.display-text li {
+  list-style-type: none;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+#time-display {
+  position: absolute;
+  top: 25%;
+  left: calc(50% - 75px);
+  min-width: 150px;
+  margin: 0;
+  text-align: center;
+  transition: 1s ease-in;
+}
+
+#time-display li {
+  display: block;
+}
+
+#calendar-display {
+  position: absolute;
+  top: 75%;
+  left: calc(50% - 75px);
+  min-width: 150px;
+  margin: 0;
+  text-align: center;
+}
+
+#calendar-display li {
+  display: inline-block;
+}
