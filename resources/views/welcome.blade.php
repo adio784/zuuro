@@ -51,7 +51,7 @@
                                     <li class="scroll-to-section"><a href="/countact_us">Contact-us</a></li> 
                                     @if (Route::has('login'))
                                         @auth
-                                            <li class="scroll-to-section"><a href="{{ url('/home') }}" target="_blank">Home</a></li> 
+                                            <li class="scroll-to-section"><a href="{{ url('/home') }}" target="_blank">Dashboard</a></li> 
                                         @else
                                             <li class="scroll-to-section"><a href="{{ route('login') }}" target="_blank">Login</a></li> 
                                         @endauth
@@ -209,36 +209,38 @@
                   </div>
                   <div class="col-lg-12">
                     <div class="owl-testimonials owl-carousel" style="position: relative; z-index: 5;">
-                      <div class="item">
-                        <p>“just think about Zuuro if you need free airtime/data subscription”</p>
-                          <h4>Zuuro</h4>
-                          <span>CEO &amp; Founder</span>
-                          <img src="{{ asset('images/quote.png') }}" alt="">
-                      </div>
-                      <div class="item">
-                        <p>“Great work from Zuuro, let the good work continue, kudos to you”</p>
-                          <h4>Abdulhammed Ridwan</h4>
-                          <span>Lead Developer</span>
-                          <img src="{{ asset('images/quote.png') }}" alt="">
-                      </div>
-                      <div class="item">
-                        <p>“I want to say this platform is a money making machine, since i joined them, I earn than before”</p>
+                      {{-- <div class="item">
+                        <div class="row">
+                          <div class="col-6">
+                            <img src="{{ asset('images/quote.png') }}" alt="">
+                          </div>
+                          <div class="col-6">
+                            <p>“I want to say this platform is a ”</p>
                           <h4>Akande Hammed O.</h4>
-                          <span>Developer</span>
                           <img src="{{ asset('images/quote.png') }}" alt="">
-                      </div>
-                      <div class="item">
+                          </div>
+                        </div>
+                        
+                      </div> --}}
+                      {{-- <div class="item">
                         <p>“I love their quick response to issues. The customer care team are available always.”</p>
                           <h4>Mariam</h4>
                           <span>Tech Officer</span>
                           <img src="{{ asset('images/quote.png') }}" alt="">
-                      </div>
-                      <div class="item">
-                        <p>“Praesent accumsan condimentum arcu, id porttitor est semper nec. Nunc diam lorem.”</p>
-                          <h4>Nihmotallah</h4>
-                          <span>Graphic Designer</span>
-                          <img src="{{ asset('images/quote.png') }}" alt="">
-                      </div>
+                      </div> --}}
+                      @php
+                        $Promo = DB::table('advert')->get();
+                        foreach($Promo as $item){
+                      @endphp
+                        <div class="item">
+                          <p>{{ $item->description }}
+                            <h4>{{ $item->title }}</h4>
+                            <img src="{{ asset('uploads/'.$item->fileName) }}" alt="">
+                        </div>
+                        @php
+                        }
+                      @endphp
+                      
                     </div>
                   </div>
                 </div>

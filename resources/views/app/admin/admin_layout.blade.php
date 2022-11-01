@@ -121,11 +121,11 @@
                     <div data-i18n="Connections">Country </div>
                   </a>
                 </li>
-                {{-- <li class="menu-item">
-                  <a href="manage_networks_page" class="menu-link">
-                    <div data-i18n="Connections">Networks </div>
+                <li class="menu-item">
+                  <a href="/niger_datapricing" class="menu-link">
+                    <div data-i18n="Connections">Pricing </div>
                   </a>
-                </li> --}}
+                </li>
               </ul>
             </li>
             <li class="menu-item">
@@ -307,6 +307,15 @@
               >
                 <i class="menu-icon tf-icons bx bx-terminal"></i>
                 <div data-i18n="Support">Terms & Condition</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a
+                href="{{('/manage_ads')}}"
+                class="menu-link"
+              >
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Documentation">Manage Ads</div>
               </a>
             </li>
             <li class="menu-item">

@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\DataPricingImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\DataPricing;
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 class AdminDashboardController extends Controller
@@ -273,6 +281,22 @@ class AdminDashboardController extends Controller
         return view('app.admin.view_user_info', $data);
     }
 
+     public function manage_ads(){
+        $upd = DB::table('advert')->get();
+            $data = [
+                'AdsInfo'=>$upd
+            ];
+        return view('app.admin.manage_ads', $data);
+    }
+
+    public function niger_datapricing(){
+        $upd = DB::table('data_pricing')->get();
+            $data = [
+                'DatInfo'=>$upd
+            ];
+        return view('app.admin.niger_datapricing', $data);
+    }
+
 
     
 
@@ -460,6 +484,46 @@ public function term__of_conditions(Request $request){
 }
 
 
+public function submitads(Request $request){
+    $request->validate([
+        'title' => 'required',
+        'description' => 'required',
+        'ads_file' => 'required|mimes:jpg,jpeg,png,gif|max:5048'
+    ]);
+    $fileName = time().'.'.$request->ads_file->extension();
+    $query_sup = DB::table('advert')
+            ->insert([
+                'title' => $request->title,
+                'description'=> $request->description,
+                'fileName' => $fileName
+            ]);
+    
+    if($query_sup){
+        $request->ads_file->move(public_path('uploads'), $fileName);
+        return back()
+            ->with('success','You have successfully upload advert.')
+            ->with('file', $fileName);
+    }else{
+        return back()->with('fail', 'Operation failed, try later ');
+    }
+
+}
+
+// Importing Excel Data Pricing
+public function importExcel(Request $request)
+{
+    $request->validate([
+        'pricing_file' => 'required|mimes:csv|max:10048'
+    ]);
+
+    Excel::import(new DataPricingImport, $request->file('pricing_file')->store('files'));
+    return back()->with('success','Imported Successfully ....');
+}
+
+
+
+
+
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -486,6 +550,20 @@ public function term__of_conditions(Request $request){
                  ]);
                  if($query){
                     return back()->with('success', 'User Activated');
+                 }else{
+                    return back()->with('fail', 'Operation failed, try later :)');
+                 }
+        } 
+
+        // Disable User
+        public function update_ads($id){
+            $query = DB::table('advert')
+                 ->where('id', $id)
+                 ->update([
+                     'active' =>1
+                 ]);
+                 if($query){
+                    return back()->with('success', 'Status Activated');
                  }else{
                     return back()->with('fail', 'Operation failed, try later :)');
                  }

@@ -91,6 +91,7 @@ Route::get('airtime_products', [UserDashboard::class, 'airtime_products'])->name
 Route::get('user_notifications', [UserDashboard::class, 'user_notifications'])->name('user_notifications');
 
 
+
 // ------------------------------------- GETTING AJAX REQUEST FROM USER SID -----------------
 Route::get('getOperatorByPhone/{id}', [UserDashboard::class, 'getOperatorByCountry']);
 Route::get('getAirtimeOperatorByPhone/{id}', [UserDashboard::class, 'getAirtimeOperatorByCountry']); 
@@ -162,6 +163,8 @@ Route::get('repayment_transaction_history', [AdminDashboardController::class, 'r
 Route::get('late_loan_payment', [AdminDashboardController::class, 'late_loan_payment'])->name('late_loan_payment');
 Route::get('loan_record', [AdminDashboardController::class, 'loan_record'])->name('loan_record');
 Route::get('paid_loan', [AdminDashboardController::class, 'paid_loan'])->name('paid_loan');
+Route::get('manage_ads', [AdminDashboardController::class, 'manage_ads'])->name('manage_ads');
+Route::get('niger_datapricing', [AdminDashboardController::class, 'niger_datapricing'])->name('niger_datapricing');
 // 08055616287
 
 
@@ -186,18 +189,23 @@ Route::post('loan_payment_method_page', [AdminDashboardController::class, 'payme
 Route::post('manage_faq', [AdminDashboardController::class, 'faq_script']);
 Route::post('sms_debtors_page', [AdminDashboardController::class, 'sms_debtors_script']);
 Route::post('support_page', [AdminDashboardController::class, 'support_script']);
-Route::post('term_conditions', [AdminDashboardController::class, 'term__of_conditions']);
-Route::post('auth', [AdminDashboardController::class, 'auth']);
+Route::post('term_conditions', [AdminDashboardController::class, 'term__of_conditions']); 
+Route::post('submitads', [AdminDashboardController::class, 'submitads']);
+Route::post('submit_pricing', [AdminDashboardController::class, 'submit_pricing']); 
+Route::post('auth', [AdminDashboardController::class, 'auth']); 
+Route::post('importExcel', [AdminDashboardController::class, 'importExcel']);
+Route::post('setdataPricing', [AdminDashboardController::class, 'setdataPricing']);
 
 
 
 
 // ------------------------------- UPDATE IN ADMIN SIDE ---------------------------
-
+Route::get('update_ads/{id}', [AdminDashboardController::class, 'update_ads']);
+Route::get('update_data/{id}', [AdminDashboardController::class, 'update_data']);
 
 
 // ------------------------------- DELETING IN ADMIN SIDE --------------------------
-Route::get('manage_faq/{id}', [AdminDashboardController::class, 'delete_faq']);
+Route::get('manage_faq/{id}', [AdminDashboardController::class, 'delete_faq']); 
 Route::get('sms_debtors_page/{id}', [AdminDashboardController::class, 'delete_sms']);
 Route::get('manage_pricing_page/{id}', [AdminDashboardController::class, 'delete_pricing']);
 Route::get('loan_payment_method_page/{id}', [AdminDashboardController::class, 'delete_payment_method']);

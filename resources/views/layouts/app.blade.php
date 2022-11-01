@@ -259,16 +259,7 @@
                 <div data-i18n="Support">Terms & Condition</div>
               </a>
             </li>
-            <li class="menu-item">
-              <a
-                href="{{('/advert')}}"
-                target="_blank"
-                class="menu-link"
-              >
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Manage Ads</div>
-              </a>
-            </li>
+            
             <li class="menu-item">
               <a
                 href="{{('/user_faq')}}"

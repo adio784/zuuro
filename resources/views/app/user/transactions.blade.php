@@ -71,7 +71,7 @@
                             </button>
                             <div class="dropdown-menu">
                               <a class="dropdown-item" href="/loan_receipt/{{ $item->TransferRef }}"
-                                ><i class="bx bx-edit-alt me-2"></i> Recipt</a
+                                ><i class="bx bx-edit-alt me-2"></i> Receipt</a
                               >
                             </div>
                           </div>
