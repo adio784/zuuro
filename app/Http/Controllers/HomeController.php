@@ -114,7 +114,7 @@ class HomeController extends Controller
 
     public function verify_mobile(Request $request){
         $data = $request->validate([
-            'phone_number' => ['required', 'numeric', 'unique:users']
+            'phone_number' => ['required', 'numeric']
         ]);
 
         $token = getenv("TWILIO_AUTH_TOKEN");
@@ -143,7 +143,7 @@ class HomeController extends Controller
         $twilio = new Client($twilio_sid, $token);
         $verification = $twilio->verify->v2->services($twilio_verify_sid)
             ->verificationChecks
-            ->create($data['verification_code'], array('to' => $data['phone_number']));
+            ->create(['code' => $data['verification_code'], 'to' => $data['phone_number']]);
         if ($verification->valid) {
             $user = tap(User::where('telephone', $data['phone_number']))->update(['isVerified' => true, 'number_verify_at'=> NOW()]);
             /* Authenticate user */

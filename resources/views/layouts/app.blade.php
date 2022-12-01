@@ -595,56 +595,102 @@
   if ($('#network').length) {
     $('#network').on('change', function(){
       let ph_no = $('#phone_Number').val();
+      let ctr = $('#country').val();
+      let nwk = $('#network').val();
+      // alert(nwk);
      
       $("#data_plan").css('pointer-events','none'); 
       $("#select_dataplan").html($('<div class="spinner-border spinner-border-sm text-secondary" role="status"><span class="visually-hidden">Loading...</span></div>'));
 
       // alert(ph_no);
-      $.ajax({
-        method: 'GET',
-        url: '/getProductByPhone/'+ph_no,
-        success:function(response)
-        {
-          if(response != ""){
-            $("#select_dataplan").html("");
-            $("#select_dataplan").html('Select Data Plan') ;
-            $("#data_plan").css('pointer-events','visible'); 
-            $('#data_plan').html("<option> Select Plan </option>");
-            // console.log(response.DefaultDisplayText);
-            $.each(response, function(key, item) {
-              let validperiod = "";
-              if(item.ValidityPeriodIso == " "){ validperiod = '-';}else{validperiod= '(' +item.ValidityPeriodIso +'Days )';}
-              let inpu_amt_val = item.price;
-              if(item.DefaultDisplayText == ''){
-                $('#data_plan').append(
-                  "<option value=''> -- Input phone number with country code -- </option>"
-                );
-              }else{
-                $('#data_plan').append(
-                  "<option value="+ inpu_amt_val +">" + item.DefaultDisplayText + " -- " + validperiod + " -- " + " - at ( " + new Intl.NumberFormat().format(item.Minimum.ReceiveValue) + ' ' + item.Minimum.ReceiveCurrencyIso + ' ) '+ "</option>"
-                );
-              }
+      // If Country selected is Nigeria, get product from product_pricing
+      if(ctr == 'NG'){
+          $.ajax({
+          method: 'GET',
+          url: '/getProductFromPricing/'+nwk,
+          success:function(response)
+          {
+            if(response != ""){
+              $("#select_dataplan").html("");
+              $("#select_dataplan").html('Select Data Plan') ;
+              $("#data_plan").css('pointer-events','visible'); 
+              $('#data_plan').html("<option> Select Plan </option>");
+              console.log(response.DataPricing);
+              $.each(response.DataPricing, function(key, item) {
+                
+                let inpu_amt_val = item.data_price;
+                if(item.DataPricing == ''){
+                  $('#data_plan').append(
+                    "<option value=''> -- Input phone number with country code -- </option>"
+                  );
+                }else{
+                  $('#data_plan').append(
+                    "<option value="+ inpu_amt_val +">" + item.data_quant + " = #" + new Intl.NumberFormat().format(item.data_price) + " -- " + "valid for ( " + item.duration  + ' ) '+ "</option>"
+                  );
+                }
+                
+                // Passing values
+                let data_price = item.data_price;
+                $('#data_price').val(data_price);
+              });
               
-               // Passing values
-              let distributorReference = Math.floor(100000 + Math.random() * 900000);
-              let SendCurrencyIso = item.Minimum.SendCurrencyIso;
-              let BillRef = item.LookupBillsRequired;
-              let ReceiveCurrencyIso = item.Minimum.ReceiveCurrencyIso;
-              let DefaultDisplayText = item.DefaultDisplayText;
-
-              $('#SendCurrencyIso').val(SendCurrencyIso); 
-              $('#DefaultDisplayText').val(DefaultDisplayText); 
-              $('#DistributorRef').val(distributorReference); 
-              $('#SName').val('Data'); 
-              $('#BillRef').val(BillRef); 
-              $('#ReceiveCurrencyIso').val(ReceiveCurrencyIso); 
-            });
-            
-          }else{
-            $('#data_plan').html("<option value=''> Select Plan </option>");
+            }else{
+              $('#data_plan').html("<option value=''> Select Plan </option>");
+            }
           }
-        }
-      })
+        })
+
+      }
+      // Select product from dingConnect pricing
+      else
+      {
+          $.ajax({
+                  method: 'GET',
+                  url: '/getProductByPhone/'+ph_no,
+                  success:function(response)
+                  {
+                    if(response != ""){
+                      $("#select_dataplan").html("");
+                      $("#select_dataplan").html('Select Data Plan') ;
+                      $("#data_plan").css('pointer-events','visible'); 
+                      $('#data_plan').html("<option> Select Plan </option>");
+                      // console.log(response.DefaultDisplayText);
+                      $.each(response, function(key, item) {
+                        let validperiod = "";
+                        if(item.ValidityPeriodIso == " "){ validperiod = '-';}else{validperiod= '(' +item.ValidityPeriodIso +'Days )';}
+                        let inpu_amt_val = item.price;
+                        if(item.DefaultDisplayText == ''){
+                          $('#data_plan').append(
+                            "<option value=''> -- Input phone number with country code -- </option>"
+                          );
+                        }else{
+                          $('#data_plan').append(
+                            "<option value="+ inpu_amt_val +">" + item.DefaultDisplayText + " -- " + validperiod + " -- " + " - at ( " + new Intl.NumberFormat().format(item.Minimum.ReceiveValue) + ' ' + item.Minimum.ReceiveCurrencyIso + ' ) '+ "</option>"
+                          );
+                        }
+                        
+                        // Passing values
+                        let distributorReference = Math.floor(100000 + Math.random() * 900000);
+                        let SendCurrencyIso = item.Minimum.SendCurrencyIso;
+                        let BillRef = item.LookupBillsRequired;
+                        let ReceiveCurrencyIso = item.Minimum.ReceiveCurrencyIso;
+                        let DefaultDisplayText = item.DefaultDisplayText;
+
+                        $('#SendCurrencyIso').val(SendCurrencyIso); 
+                        $('#DefaultDisplayText').val(DefaultDisplayText); 
+                        $('#DistributorRef').val(distributorReference); 
+                        $('#SName').val('Data'); 
+                        $('#BillRef').val(BillRef); 
+                        $('#ReceiveCurrencyIso').val(ReceiveCurrencyIso); 
+                      });
+                      
+                    }else{
+                      $('#data_plan').html("<option value=''> Select Plan </option>");
+                    }
+                  }
+                })
+      }
+      
     });
   }else{
     $('#network_airtime').on('change', function(){

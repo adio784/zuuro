@@ -20,13 +20,14 @@
                     <div class="flex-grow-1 row">
                         <div class="col-8 col-sm-7 mb-sm-0 mb-2">
                         <h6 class="mb-0">Term of use</h6>
-                        <small class="text-muted">{{ $page->file }}</small>
+                        <small class="text-muted">{{ $page->fileName }}</small>
                         </div>
                         <div class="col-4 col-sm-5 text-end">
                         <a href="term_conditions/{{ $page->id }}" onclick="return confirm('Are you sure to delete ?')" class="btn btn-icon btn-outline-danger">
                             <i class="bx bx-trash-alt"></i>
                         </a>
                         </div>
+                       
                     </div>
                 </div> 
                 @endforeach

@@ -89,6 +89,7 @@ Route::get('provider_data', [UserDashboard::class, 'provider_data'])->name('prov
 Route::get('regions', [UserDashboard::class, 'regions'])->name('regions');
 Route::get('airtime_products', [UserDashboard::class, 'airtime_products'])->name('airtime_products');
 Route::get('user_notifications', [UserDashboard::class, 'user_notifications'])->name('user_notifications');
+Route::get('getProductFromPricing/{id}', [UserDashboard::class, 'getProductFromPricing']);
 
 
 
@@ -194,7 +195,7 @@ Route::post('submitads', [AdminDashboardController::class, 'submitads']);
 Route::post('submit_pricing', [AdminDashboardController::class, 'submit_pricing']); 
 Route::post('auth', [AdminDashboardController::class, 'auth']); 
 Route::post('importExcel', [AdminDashboardController::class, 'importExcel']);
-Route::post('setdataPricing', [AdminDashboardController::class, 'setdataPricing']);
+Route::post('setdataPricing', [AdminDashboardController::class, 'set_pricing_script']);
 
 
 

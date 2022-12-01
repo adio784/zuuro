@@ -6,58 +6,7 @@
               <p><small>This will only be available for Nigeria Networks ie MTN, GLO, 9MOBILE, AIRTEL ...</small></p>
 
               <div class="row">
-
-                <div class="col-md-12">
-                  <div class="card mb-4">
-                    <h5 class="card-header">Manage /Data - Price</h5>
-                    
-                    <!-- Data -->
-                    
-                    <hr class="my-0" />
-                    <div class="card-body">
-                        
-                    <form id="formAccountSettings" method="POST" action="/importExcel" enctype="multipart/form-data">
-                      @csrf
-                        <!-- Result  -->
-                        <div id="error_result">
-                          @if(Session::get('success'))
-                              <div class="alert alert-success alert-dismissible fade show text-dark" role="alert">
-                                  <strong>Success!</strong> {{ Session::get('success') }}
-                              </div>
-                          @endif
-                          @if(Session::get('fail'))
-                          <div class="alert alert-danger text-danger alert-dismissible fade show" role="alert">
-                              <strong>Oh Oops!</strong> {{ Session::get('fail') }}
-                          </div>
-                          @endif
-                      </div>
-                        <div class="row ">
-                            
-                          <div class="mb-3 col-md-12">
-                            <label class="form-label" for="ads_file">Upload</label>
-                            <small>Upload csv file of your custom price here ...</small>
-                            <div class="input-group input-group-merge">
-                            <span id="ads_file" class="input-group-text"><i class="bx bx-file"></i></span>
-                            <input type="file" id="ads_file" class="form-control phone-mask" 
-                                  aria-describedby="basic-icon-default-phone2"
-                                  name="pricing_file">
-                            </div>
-                            @error('pricing_file') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
-                        </div>
-                        
-                        <div class="mt-2">
-                          <button type="submit" class="btn btn-primary m-2" >
-                            Proceed
-                          </button>
-
-                        </div>
-
-                      </form>
-                    </div>
-                    <!-- /Account -->
-                  </div>
-                 
-                </div>
+              
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <h5 class="card-header">Manage /Data - Price</h5>
@@ -89,7 +38,7 @@
                             <small>Enter pricing detail gently ...</small>
                             <div class="input-group input-group-merge">
                             <span id="ads_file" class="input-group-text"><i class="bx bx-file"></i></span>
-                            <select class="form-control" name="price_network">
+                            <select class="form-control" name="network_code">
                                 <option> -- Choose Network -- </option>
                                 <option> MTN </option>
                                 <option> GLO </option>
@@ -97,26 +46,41 @@
                                 <option> 9MOBILE </option>
                             </select>
                             </div>
-                            @error('price_network') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
+                            @error('network_code') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label class="form-label" for="ads_file">Data Plan</label>
                             <div class="input-group input-group-merge">
                             <span id="ads_file" class="input-group-text"><i class="bx bx-network"></i></span>
-                            <input type="text" id="ads_file" class="form-control phone-mask" 
-                                  aria-describedby="basic-icon-default-phone2"
-                                  name="data_plan">
+                              <select class="form-control" name="data_plan" aria-describedby="basic-icon-default-phone2">
+                                <option> -- Choose Network -- </option>
+                                <option> 500 MB </option>
+                                @php
+                                  for($i=1; $i<=15; $i++){@endphp
+                                      <option> <?php echo $i; ?> GB </option>
+                                  @php }
+                                @endphp
+                            </select>
                             </div>
                             @error('data_plan') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label class="form-label" for="ads_file">Validity</label>
-                            <small>()01 Days)</small>
+                            <small>(01 Days)</small>
                             <div class="input-group input-group-merge">
                             <span id="ads_file" class="input-group-text"><i class="bx bx-network"></i></span>
-                            <input type="text" id="ads_file" class="form-control phone-mask" 
+                            <select type="text" id="ads_file" class="form-control phone-mask" 
                                   aria-describedby="basic-icon-default-phone2"
                                   name="validity">
+                                  <option> -- Plan Validity -- </option>
+                                  <option> 3 Days </option>
+                                  <option> 5 Days </option>
+                                  <option> 7 Days </option>
+                                  <option> 14 Days </option>
+                                  <option> 30 Days </option>
+                                  <option> 2 Months </option>
+                                  <option> 3 Months </option>
+                                  </select>
                             </div>
                             @error('validity') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
                         </div>
@@ -127,7 +91,7 @@
                             <span id="ads_file" class="input-group-text"><i class="bx bx-file"></i></span>
                             <input type="text" name="data_price" class="form-control">
                             </div>
-                            @error('price_network') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
+                            @error('data_price') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label class="form-label" for="ads_file">Interest Rate</label>
@@ -135,9 +99,9 @@
                             <span id="ads_file" class="input-group-text"><i class="bx bx-network"></i></span>
                             <input type="text" id="ads_file" class="form-control phone-mask" 
                                   aria-describedby="basic-icon-default-phone2"
-                                  name="int_rate">
+                                  name="interest">
                             </div>
-                            @error('int_rate') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
+                            @error('interest') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label class="form-label" for="ads_file">Loan Amount</label>
@@ -149,10 +113,13 @@
                             </div>
                             @error('loan_amount') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
                         </div>
-                        
+                        < hr>
                         <div class="mt-2">
                           <button type="submit" class="btn btn-primary m-2" >
                             Proceed
+                          </button>
+                          <button type="button" class="btn btn-info m-2" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                            Upload Csv File
                           </button>
 
                         </div>
@@ -160,9 +127,76 @@
                       </form>
                     </div>
                     <!-- /Account -->
+
+
+
+                                        {{-- Modal IMPORT --}}
+                    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="modalCenterTitle">Input PIN</h5>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                 <form id="formAccountSettings" method="POST" action="/importExcel" enctype="multipart/form-data">
+                                    @csrf
+                                      <!-- Result  -->
+                                      <div id="error_result">
+                                        @if(Session::get('csv_success'))
+                                            <div class="alert alert-success alert-dismissible fade show text-dark" role="alert">
+                                                <strong>Success!</strong> {{ Session::get('success') }}
+                                            </div>
+                                        @endif
+                                        @if(Session::get('csv_fail'))
+                                        <div class="alert alert-danger text-danger alert-dismissible fade show" role="alert">
+                                            <strong>Oh Oops!</strong> {{ Session::get('fail') }}
+                                        </div>
+                                        @endif
+                                    </div>
+                                      <div class="row ">
+                                        <div class="mb-3 col-md-12">
+                                          <label class="form-label" for="ads_file">Upload</label>
+                                          <small>Upload csv file of your custom price here ...</small>
+                                          <div class="input-group input-group-merge">
+                                          <span id="ads_file" class="input-group-text"><i class="bx bx-file"></i></span>
+                                          <input type="file" id="ads_file" class="form-control phone-mask" 
+                                                aria-describedby="basic-icon-default-phone2"
+                                                name="pricing_file">
+                                          </div>
+                                          @error('pricing_file') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
+                                      </div>
+                                      
+                                    <div class="mt-2">
+                                        <button type="submit" class="btn btn-primary m-2" >
+                                            Proceed
+                                        </button>
+                                    </div>
+
+                                  </form>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                  {{-- MODAL IMPORT ENDS HERE --}}
+
+
+
                   </div>
                  
                 </div>
+
+    </div>
+    <div class="row">
+
+
+
+
 
                 <div class="col-md-12">
                     <div class="card">
@@ -232,6 +266,7 @@
                         </div>
                     </div>
                 </div>
+
               </div>
             </div>
 @endsection

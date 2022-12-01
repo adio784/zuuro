@@ -30,7 +30,7 @@
 
                             <div class="col-md-6">
                                 <input type="hidden" name="phone_number" value="{{session('phone_number')}}">
-                                <input id="verification_code" type="tel" class="form-control @error('verification_code') is-invalid @enderror" name="verification_code" value="{{ old('verification_code') }}" required autocomplete="verification_code" autofocus>
+                                <input type="tel" name="verification_code" id="verification_code" class="form-control @error('verification_code') is-invalid @enderror" value="{{ old('verification_code') }}" required autocomplete="verification_code" autofocus>
 
                                 @error('verification_code')
                                     <span class="invalid-feedback" role="alert">

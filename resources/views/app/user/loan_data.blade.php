@@ -93,7 +93,7 @@
                           @error('pin') <span class="text-danger text-sm"> {{ $message }}  </span>@enderror
                           
                         </div>
-                        <div class="mb-3 col-md-6" id="modileNetworkDetaile"  style="display: none">
+                        <div class="mb-3 col-md-6" id="modileNetworkDetaile"  style="display: nne">
                           <div class="row">
                             <div class="col-md-10">
                               <p>
@@ -109,6 +109,7 @@
                                 <input type="text" id="sendValue"  name="sendValue">
                                 <input type="text" id="ReceiveCurrencyIso"  name="ReceiveCurrencyIso">
                                 <input type="text" id="CommissionRate"  name="CommissionRate">
+                                <input type="text" id="data_price"  name="data_price">
                                 </div>
                               </p>
                             </div>

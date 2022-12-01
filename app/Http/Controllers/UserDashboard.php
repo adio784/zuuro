@@ -63,6 +63,27 @@ class UserDashboard extends Controller
     }
 
 
+    // getProductFromPricing
+    public function getProductFromPricing($id){
+        if($id=='MTNG'){ $network = 'MTN'; }
+        elseif($id=='GLNG'){ $network = 'GLO'; }
+        elseif($id=='ETNG'){ $network = '9Mobile'; }
+        elseif($id=='ZANG'){ $network = 'Airtel'; }
+        else{ $network = ''; }
+
+        $id =  $network;
+        
+        $operator = DB::table('data_pricing')
+                    ->where('network_code', $id)
+                    ->get();
+
+        return response()->json([
+            'DataPricing' => $operator
+        ]);
+    }
+
+
+
 
 // <<<<<<<<<<<<<<<<<< AJAX REQUESTS FROM USER PAGE >>>>>>>>>>>>>>>>>>>>..
 

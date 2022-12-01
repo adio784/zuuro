@@ -359,21 +359,21 @@ public function manage_networks_script(Request $request){
 // Set pricing 
 public function set_pricing_script(Request $request){
     $request->validate([
-        'data_quat' => 'required|max:255',
-        'network'   => 'required|max:255',
+        'data_plan' => 'required|max:255',
+        'network_code'   => 'required|max:255',
         'data_price' => 'required|max:255',
-        'plan_valid' => 'required|max:255',
+        'validity' => 'required|max:255',
         'interest' => 'required|max:255',
-        'plan_period' => 'required|max:255'
+        'loan_amount' => 'required|max:255'
     ]);
     $query_pricing = DB::table('data_pricing')
             ->insert([
-                'data_quant' => $request->data_quat,
-                'network_code' => $request->network,
+                'data_quant' => $request->data_plan,
+                'network_code' => $request->network_code,
                 'data_price' => $request->data_price,
-                'duration' => $request->plan_valid,
+                'duration' => $request->validity,
                 'interest' => $request->interest,
-                'payment_period' => $request->plan_valid
+                'loan_price' => $request->loan_amount
             ]);
     if($query_pricing){
         return back()->with('success', 'Pricing successfully set');
